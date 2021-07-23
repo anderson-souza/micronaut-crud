@@ -1,5 +1,6 @@
-package com.aps.service;
+package com.aps.service.crud;
 
+import com.aps.exceptions.NotFoundException;
 import com.aps.model.DefaultEntity;
 
 public interface CrudService<T extends DefaultEntity> {
@@ -24,7 +25,7 @@ public interface CrudService<T extends DefaultEntity> {
      * @param id ID da entidade
      * @return Entidade caso encontre, do contrário retorna null
      */
-    T getById(Long id);
+    T getById(Long id) throws NotFoundException;
 
     /**
      * Função disparada antes da execução do Save da entidade

@@ -1,6 +1,7 @@
 package com.aps.service;
 
 import com.aps.model.Pessoa;
+import com.aps.service.crud.CrudServiceImpl;
 import io.micronaut.data.repository.CrudRepository;
 
 import javax.inject.Singleton;

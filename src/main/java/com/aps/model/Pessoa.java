@@ -24,4 +24,6 @@ public class Pessoa extends DefaultEntity {
     private String nome;
 
     private String cidadeNascimento;
+
+    private Boolean ativo = Boolean.TRUE;
 }

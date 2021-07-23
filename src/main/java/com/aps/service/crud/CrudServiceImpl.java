@@ -1,5 +1,6 @@
-package com.aps.service;
+package com.aps.service.crud;
 
+import com.aps.exceptions.NotFoundException;
 import com.aps.model.DefaultEntity;
 import io.micronaut.data.repository.CrudRepository;
 
@@ -19,9 +20,9 @@ public abstract class CrudServiceImpl<T extends DefaultEntity> implements CrudSe
     }
 
     @Override
-    public T getById(Long id) {
+    public T getById(Long id) throws NotFoundException {
         preGetById(id);
-        return defaultCrudRepository.findById(id).orElse(null);
+        return defaultCrudRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     @Override
