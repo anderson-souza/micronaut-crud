@@ -22,9 +22,17 @@ micronaut {
     }
 }
 
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
+    options.compilerArgs.add('-parameters')
+    options.fork = true
+    options.forkOptions.jvmArgs << '-Dmicronaut.openapi.views.spec=swagger-ui.enabled=true,swagger-ui.theme=flattop'
+}
+
 dependencies {
     annotationProcessor("org.projectlombok:lombok")
     annotationProcessor("io.micronaut.data:micronaut-data-processor")
+    annotationProcessor("io.micronaut.openapi:micronaut-openapi:2.5.0")
 
     implementation("io.micronaut:micronaut-http-client")
     implementation("io.micronaut:micronaut-runtime")
@@ -35,14 +43,13 @@ dependencies {
     implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut.beanvalidation:micronaut-hibernate-validator")
     implementation("com.google.guava:guava:30.1.1-jre")
+    implementation("io.swagger.core.v3:swagger-annotations")
 
     compileOnly("org.projectlombok:lombok")
 
     runtimeOnly("com.h2database:h2")
     runtimeOnly("org.apache.logging.log4j:log4j-api:2.14.1")
     runtimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.14.1")
-
-
 }
 
 

@@ -32,8 +32,6 @@ public interface CrudResource<T extends DefaultEntity> {
      */
     T update(Long id, T t);
 
-    /**
-     * @param id
-     */
+    /** @param id */
     void delete(Long id);
 }
