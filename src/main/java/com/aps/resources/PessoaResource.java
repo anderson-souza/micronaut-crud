@@ -8,7 +8,7 @@ import io.micronaut.http.annotation.Controller;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Pessoa")
-@Controller("/pessoa")
+@Controller("/pessoas")
 public class PessoaResource extends CrudResourceImpl<Pessoa> {
 
     public PessoaResource(CrudService<Pessoa> crudService) {

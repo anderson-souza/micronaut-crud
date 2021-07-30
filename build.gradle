@@ -2,6 +2,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "7.0.0"
     id("io.micronaut.application") version "1.5.3"
     id 'jacoco'
+    id "org.sonarqube" version "3.3"
 }
 
 version = "0.1"
@@ -45,6 +46,7 @@ dependencies {
     implementation("io.micronaut.beanvalidation:micronaut-hibernate-validator")
     implementation("com.google.guava:guava:30.1.1-jre")
     implementation("io.swagger.core.v3:swagger-annotations")
+    implementation("io.micronaut.liquibase:micronaut-liquibase")
 
     compileOnly("org.projectlombok:lombok")
 
