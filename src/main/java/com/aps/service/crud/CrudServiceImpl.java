@@ -2,21 +2,28 @@ package com.aps.service.crud;
 
 import com.aps.exceptions.NotFoundException;
 import com.aps.model.DefaultEntity;
-import io.micronaut.data.repository.CrudRepository;
+import io.micronaut.data.model.Page;
+import io.micronaut.data.model.Pageable;
+import io.micronaut.data.repository.PageableRepository;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public abstract class CrudServiceImpl<T extends DefaultEntity> implements CrudService<T> {
 
-    private final CrudRepository<T, Long> defaultCrudRepository;
+    private final PageableRepository<T, Long> defaultCrudRepository;
 
-    protected CrudServiceImpl(CrudRepository<T, Long> defaultCrudRepository) {
+    protected CrudServiceImpl(PageableRepository<T, Long> defaultCrudRepository) {
         this.defaultCrudRepository = defaultCrudRepository;
     }
 
     @Override
     public Iterable<T> getAll() {
         return defaultCrudRepository.findAll();
+    }
+
+    @Override
+    public Page<T> getAllPaginated(Pageable pageable) {
+        return defaultCrudRepository.findAll(pageable);
     }
 
     @Override

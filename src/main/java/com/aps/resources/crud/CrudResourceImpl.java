@@ -2,6 +2,9 @@ package com.aps.resources.crud;
 
 import com.aps.model.DefaultEntity;
 import com.aps.service.crud.CrudService;
+import io.micronaut.data.model.Page;
+import io.micronaut.data.model.Pageable;
+import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Delete;
@@ -34,6 +37,12 @@ public abstract class CrudResourceImpl<T extends DefaultEntity> implements CrudR
     @Override
     public Iterable<T> getAll() {
         return crudService.getAll();
+    }
+
+    @Get(produces = MediaType.APPLICATION_JSON, value = "/paginated")
+    @Override
+    public HttpResponse<Page<T>> getAllPaginated(Pageable pageable) {
+        return HttpResponse.ok().body(crudService.getAllPaginated(pageable));
     }
 
     /**

@@ -2,6 +2,8 @@ package com.aps.service.crud;
 
 import com.aps.exceptions.NotFoundException;
 import com.aps.model.DefaultEntity;
+import io.micronaut.data.model.Page;
+import io.micronaut.data.model.Pageable;
 
 public interface CrudService<T extends DefaultEntity> {
 
@@ -11,6 +13,8 @@ public interface CrudService<T extends DefaultEntity> {
      * @return Iterable de T, sendo T
      */
     Iterable<T> getAll();
+
+    Page<T> getAllPaginated(Pageable pageable);
 
     /**
      * Função disparada antes de executar a função getById

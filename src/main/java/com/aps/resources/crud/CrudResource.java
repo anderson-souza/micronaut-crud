@@ -1,6 +1,9 @@
 package com.aps.resources.crud;
 
 import com.aps.model.DefaultEntity;
+import io.micronaut.data.model.Page;
+import io.micronaut.data.model.Pageable;
+import io.micronaut.http.HttpResponse;
 
 public interface CrudResource<T extends DefaultEntity> {
 
@@ -11,6 +14,8 @@ public interface CrudResource<T extends DefaultEntity> {
      */
     Iterable<T> getAll();
 
+    HttpResponse<Page<T>> getAllPaginated(Pageable pageable);
+
     /**
      * Função que retornará uma entidade de T pelo seu ID
      *
@@ -20,18 +25,20 @@ public interface CrudResource<T extends DefaultEntity> {
     T getById(Long id);
 
     /**
-     * @param t
-     * @return
+     * @param t Entidade
+     * @return Entidade persistida no banco de dados
      */
     T save(T t);
 
     /**
-     * @param id
-     * @param t
-     * @return
+     * @param id ID da entidade
+     * @param t Entidade
+     * @return Entidade persistida no banco de dados
      */
     T update(Long id, T t);
 
-    /** @param id */
+    /**
+     * @param id ID da entidade
+     */
     void delete(Long id);
 }
