@@ -8,7 +8,10 @@ import io.micronaut.http.annotation.Controller;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.persistence.Entity;
+
 import static com.aps.architecture.PackagesDefinition.DEFAULT_PACKAGE;
+import static com.aps.architecture.PackagesDefinition.DOMAIN_PACKAGE;
 import static com.aps.architecture.PackagesDefinition.REPOSITORY_PACKAGE;
 import static com.aps.architecture.PackagesDefinition.RESOURCES_PACKAGE;
 import static com.aps.architecture.PackagesDefinition.SERVICE_PACKAGE;
@@ -49,6 +52,15 @@ class PackageResideTest {
                 .or().haveNameMatching(".*Controller")
                 .should()
                 .resideInAPackage(RESOURCES_PACKAGE);
+
+        rule.check(importedClasses);
+    }
+
+    @Test
+    void domain_classes_should_reside_in_model_package() {
+        ArchRule rule = classes().that().areAnnotatedWith(Entity.class)
+                .should()
+                .resideInAPackage(DOMAIN_PACKAGE);
 
         rule.check(importedClasses);
     }

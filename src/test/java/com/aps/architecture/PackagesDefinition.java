@@ -13,4 +13,8 @@ public final class PackagesDefinition {
 
     static final String RESOURCES_PACKAGE = "..resources..";
 
+    static final String DOMAIN_PACKAGE = "..model..";
+
+    static final String EXCEPTION_PACKAGE = "..exception";
+
 }

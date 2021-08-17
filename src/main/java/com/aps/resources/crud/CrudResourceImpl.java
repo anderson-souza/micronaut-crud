@@ -35,8 +35,8 @@ public abstract class CrudResourceImpl<T extends DefaultEntity> implements CrudR
             summary = "Busca todas as entidades",
             description = "Endpoint retornará uma coleção de todas as entidades")
     @Override
-    public Iterable<T> getAll() {
-        return crudService.getAll();
+    public HttpResponse<Iterable<T>> getAll() {
+        return HttpResponse.ok().body(crudService.getAll());
     }
 
     @Get(produces = MediaType.APPLICATION_JSON, value = "/paginated")
@@ -55,8 +55,8 @@ public abstract class CrudResourceImpl<T extends DefaultEntity> implements CrudR
             description =
                     "Endpoint retornará a entidade completa através de seu ID caso seja encontrada")
     @Override
-    public T getById(Long id) {
-        return crudService.getById(id);
+    public HttpResponse<T> getById(Long id) {
+        return HttpResponse.ok().body(crudService.getById(id));
     }
 
     /**

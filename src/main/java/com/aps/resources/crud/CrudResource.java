@@ -12,7 +12,7 @@ public interface CrudResource<T extends DefaultEntity> {
      *
      * @return Iterable de T
      */
-    Iterable<T> getAll();
+    HttpResponse<Iterable<T>> getAll();
 
     HttpResponse<Page<T>> getAllPaginated(Pageable pageable);
 
@@ -22,7 +22,7 @@ public interface CrudResource<T extends DefaultEntity> {
      * @param id ID da Entidade
      * @return Entidade
      */
-    T getById(Long id);
+    HttpResponse<T> getById(Long id);
 
     /**
      * @param t Entidade
