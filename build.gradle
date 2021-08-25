@@ -57,6 +57,9 @@ dependencies {
     implementation("com.google.guava:guava:30.1.1-jre")
     implementation("io.swagger.core.v3:swagger-annotations")
     implementation("io.micronaut.liquibase:micronaut-liquibase")
+    implementation("io.micronaut.security:micronaut-security-annotations")
+    implementation("io.micronaut.security:micronaut-security-jwt")
+    implementation "commons-codec:commons-codec:1.15"
 
     compileOnly("org.projectlombok:lombok")
     compileOnly("org.graalvm.nativeimage:svm")

@@ -12,6 +12,8 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Put;
 import io.micronaut.http.annotation.Status;
+import io.micronaut.security.annotation.Secured;
+import io.micronaut.security.rules.SecurityRule;
 import io.micronaut.validation.Validated;
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -21,6 +23,7 @@ import io.swagger.v3.oas.annotations.Operation;
  *
  * @param <T> Classe que estende de DefaultEntity
  */
+@Secured(SecurityRule.IS_AUTHENTICATED)
 public abstract class CrudResourceImpl<T extends DefaultEntity> implements CrudResource<T> {
 
     private final CrudService<T> crudService;
@@ -29,7 +32,9 @@ public abstract class CrudResourceImpl<T extends DefaultEntity> implements CrudR
         this.crudService = crudService;
     }
 
-    /** @return Iterable de entidades persistidas no banco */
+    /**
+     * @return Iterable de entidades persistidas no banco
+     */
     @Get(produces = MediaType.APPLICATION_JSON)
     @Operation(
             summary = "Busca todas as entidades",
@@ -76,7 +81,7 @@ public abstract class CrudResourceImpl<T extends DefaultEntity> implements CrudR
 
     /**
      * @param id ID da Entidade
-     * @param t Entidade a ser persistida
+     * @param t  Entidade a ser persistida
      * @return Entidade persistida no banco de dados
      */
     @Put("/{id}")
@@ -89,7 +94,9 @@ public abstract class CrudResourceImpl<T extends DefaultEntity> implements CrudR
         return crudService.update(id, t);
     }
 
-    /** @param id ID da entidade */
+    /**
+     * @param id ID da entidade
+     */
     @Delete("/{id}")
     @Operation(
             summary = "Deleta a entidade no banco",
